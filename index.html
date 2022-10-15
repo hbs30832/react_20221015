@@ -1,0 +1,16 @@
+<html>
+  <head></head>
+  <body>
+    <!-- import/export 사용하기 위해서 type을 module로 지정해여 한다. -->
+    <script type="module">
+      import helloStr, { greeting } from "./hello.js";
+      import worldStr, { add } from "./world.js";
+
+      // 더하기 함수 import 받아서 사용하기
+      console.log(add(2, 3));
+
+      greeting();
+      console.log(worldStr);
+    </script>
+  </body>
+</html>
