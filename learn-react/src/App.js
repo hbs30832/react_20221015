@@ -1,10 +1,12 @@
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import "./App.css";
 import AddUser from "./components/AddUser";
 import ClassCounter from "./components/ClassCounter";
 import Counter from "./components/Counter";
 import InputText from "./components/InputText";
+import ReducerCounter from "./components/ReducerCount";
 import UserList from "./components/UserList";
+import useInputs from "./hooks/useInputs";
 
 // 컴포넌트 : 하나의 조각
 
@@ -12,6 +14,11 @@ import UserList from "./components/UserList";
 
 function App() {
   const [isRender, setIsRender] = useState(true);
+  const [text, setText] = useState("");
+  const [inputs, handleInput, reset] = useInputs({
+    name: "",
+    age: 0,
+  });
 
   const [userList, setUserList] = useState([
     {
@@ -38,33 +45,38 @@ function App() {
   //    => 특정값을 기억해놓고 사용한다(렌더링과 상관없이 변경 가능한 값).
   const nextId = useRef(4);
 
-  const onCreate = (inputs) => {
+  const onCreate = useCallback((inputs) => {
+    console.log("실행");
     const { name, age } = inputs;
     setUserList(
       // Array.prototype.concat : 인자로 전달된 배열 혹은 원소를 합쳐서 새로운 배열 반환
-      userList.concat({
-        id: nextId.current,
-        name,
-        age,
-      })
+      // useCallback을 사용할 때 함수형 업데이트를 사용하면 의존성에서 제거할 수 있다.
+      (userList) => {
+        return userList.concat({
+          id: nextId.current,
+          name,
+          age,
+        });
+      }
     );
 
     nextId.current++;
-  };
+  }, []);
 
-  const onRemove = (id) => {
+  const onRemove = useCallback((id) => {
     // window.confirm : 확인버튼 클릭시 true 반환
     const ok = window.confirm("정말 삭제하시겠습니까?");
-    if (ok) setUserList(userList.filter((user) => user.id !== id));
-  };
+    if (ok)
+      setUserList((userList) => userList.filter((user) => user.id !== id));
+  }, []);
 
-  const onToggle = (id) => {
-    setUserList(
+  const onToggle = useCallback((id) => {
+    setUserList((userList) =>
       userList.map((user) =>
         user.id === id ? { ...user, active: !user.active } : user
       )
     );
-  };
+  }, []);
   // const text = "리액트";
   return (
     /*
@@ -86,8 +98,15 @@ function App() {
 
       {/* <InputText /> */}
 
-      <AddUser onCreate={onCreate} />
+      <AddUser
+        onCreate={onCreate}
+        inputs={inputs}
+        handleInput={handleInput}
+        reset={reset}
+      />
       <UserList userList={userList} onRemove={onRemove} onToggle={onToggle} />
+
+      <input type="text" onChange={(e) => setText(e.target.value)} />
     </>
   );
 }

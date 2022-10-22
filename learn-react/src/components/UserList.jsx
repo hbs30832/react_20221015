@@ -1,11 +1,17 @@
-import { useRef, useState } from "react";
-import AddUser from "./AddUser";
+import React, { useMemo } from "react";
 
 function countUser(arr) {
-  console.log(arr.length);
+  // active가 true 유저만 세기 (배열 관련 함수 활용하기)
+  console.log("유저 세는 중...");
+  return arr.filter((user) => user.active).length;
 }
 
 function UserList({ userList, onToggle, onRemove }) {
+  // 의존하는 값이 변할 때에만 연산을 한다.
+  // const userCount = useMemo(() => countUser(userList), [userList]);
+
+  console.log("UserList render");
+
   return (
     <div>
       <h2>유저 목록</h2>
@@ -47,4 +53,4 @@ function User({ user, onRemove, onToggle }) {
   );
 }
 
-export default UserList;
+export default React.memo(UserList);

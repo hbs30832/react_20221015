@@ -1,28 +1,11 @@
-import { useState } from "react";
+import React from "react";
 
-function AddUser({ onCreate }) {
-  const [inputs, setInputs] = useState({
-    name: "",
-    age: "",
-  });
-
-  const handleInput = (e) => {
-    // input 관리하는 함수 만들어보기
-    const { value, name } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  };
-
+function AddUser({ onCreate, inputs, handleInput, reset }) {
   const onClickSubmit = (e) => {
     // e.preventDefault() : 요소가 가진 기본 기능을 실행하지 않는다.
     e.preventDefault();
     onCreate(inputs);
-    setInputs({
-      name: "",
-      age: "",
-    });
+    reset();
   };
 
   return (
@@ -39,9 +22,9 @@ function AddUser({ onCreate }) {
         name="age"
         value={inputs.age}
       />
-      <button onClick={onCreate}>등록</button>
+      <button>등록</button>
     </form>
   );
 }
 
-export default AddUser;
+export default React.memo(AddUser);
