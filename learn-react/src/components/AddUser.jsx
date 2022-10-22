@@ -39,7 +39,7 @@ function AddUser({ onCreate }) {
         name="age"
         value={inputs.age}
       />
-      <button>등록</button>
+      <button onClick={onCreate}>등록</button>
     </form>
   );
 }
