@@ -1,40 +1,56 @@
-import styled, { ThemeProvider } from "styled-components";
-import Button from "./components/Button";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
+import TodoHeader from "./components/TodoHeader";
+import TodoInput from "./components/TodoInput";
+import TodoList from "./components/TodoList";
+import TodoTemplate from "./components/TodoTemplate";
+import useTodoReducer from "./hooks/useTodoReducer";
+
+// 글로벌 스타일 적용
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  li {
+    list-style: none;
+  }
+`;
 
 function App() {
+  const [todos] = useTodoReducer();
   return (
-    <ThemeProvider
-      theme={{
-        colors: {
-          red: "#f31240",
-          blue: "#133afe",
-          green: "#23fb13",
-        },
-      }}
-    >
-      <div>
-        <Title>Hello Styled</Title>
-        <Container>
-          <Button text="click" size="big" />
-          <Button text="클릭" color="blue" />
-        </Container>
-      </div>
-    </ThemeProvider>
+    <>
+      <GlobalStyle />
+      <ThemeProvider
+        theme={{
+          colors: {
+            main: "#53b5ed",
+          },
+        }}
+      >
+        <AppBlock>
+          <TodoTemplate name="sasdsad">
+            <TodoHeader />
+            <TodoList todos={todos} />
+            <TodoInput />
+          </TodoTemplate>
+        </AppBlock>
+      </ThemeProvider>
+    </>
   );
 }
 
-const Title = styled.h1`
-  color: red;
-`;
-
-const Container = styled.div`
+const AppBlock = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
-  border: 3px solid black;
-  width: 300px;
-  height: 200px;
 
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: #f4f4f4;
 `;
 
 export default App;
