@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { lighten } from "polished";
-import { TODO_TYPES, useTodoDispatch } from "../hooks/useTodoReducer";
+import { TODO_TYPES, useTodoDispatch } from "../hooks/useTodoContext";
 
 function TodoInput() {
   const dispatch = useTodoDispatch();

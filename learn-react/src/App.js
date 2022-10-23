@@ -1,14 +1,7 @@
-import {
-  useCallback,
-  useRef,
-  useState,
-  createContext,
-  useReducer,
-} from "react";
+import { useCallback, useRef, createContext, useReducer } from "react";
 import "./App.css";
 import AddUser from "./components/AddUser";
 import UserList from "./components/UserList";
-import useInputs from "./hooks/useInputs";
 import useInputReducer from "./hooks/userInputReducer";
 
 export const UserDispatchContext = createContext(null);

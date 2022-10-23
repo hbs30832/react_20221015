@@ -6,7 +6,7 @@ import {
 } from "react-icons/ai";
 import { useState } from "react";
 import { keyframes } from "styled-components";
-import { TODO_TYPES, useTodoDispatch } from "../hooks/useTodoReducer";
+import { TODO_TYPES, useTodoDispatch } from "../hooks/useTodoContext";
 
 function TodoItem({ todo }) {
   const { id, text, done } = todo;
