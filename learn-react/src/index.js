@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+// import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Accordian from "./components/UI/Accordian";
+// import Accordian from "./components/UI/Accordian";
 
 import { createGlobalStyle } from "styled-components";
-import Carousel from "./components/UI/Carousel";
+import Scroll from "./components/UI/Scroll";
+// import Carousel from "./components/UI/Carousel";
 
 const GlobalStyle = createGlobalStyle`
+    body {
+      height : 300vh;
+    }
     * {
         margin : 0;
         padding : 0;
@@ -20,7 +24,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
     <GlobalStyle />
-    <Carousel />
+    <Scroll />
   </>
 );
 

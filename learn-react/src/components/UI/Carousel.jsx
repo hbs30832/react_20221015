@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import CarouselItem from "./CarouselItem";
 import CarouselWrapper from "./CarouselWrapper";
@@ -12,8 +12,25 @@ const slideList = [
   },
 ];
 
+const preventWheel = (e) => {
+  e.preventDefault();
+};
+
 function Carousel() {
   const [modalOn, setModalOn] = useState(true);
+
+  useEffect(() => {
+    // if (modalOn)
+    //   window.addEventListener("wheel", preventWheel, { passive: false });
+    // else window.removeEventListener("wheel", preventWheel, { passive: false });
+    if (modalOn) {
+      document.body.style.height = "100vh";
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.height = "auto";
+      document.body.style.overflow = "scroll";
+    }
+  }, [modalOn]);
 
   return (
     <>

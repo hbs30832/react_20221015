@@ -11,6 +11,17 @@ function Modal({ title, content, setModalOn }) {
 }
 
 // 20px 올라오면서 투명상태에서 나타나는 효과
+const slideUp = keyframes`
+  from {
+    transform: translateY(20px);
+  }
+`;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+`;
 
 const Block = styled.div`
   width: 500px;
@@ -19,6 +30,8 @@ const Block = styled.div`
 
   border-radius: 4px;
   position: absolute;
+
+  animation: ${slideUp} 0.4s, ${fadeIn} 0.5s;
 `;
 
 const Title = styled.h3`
