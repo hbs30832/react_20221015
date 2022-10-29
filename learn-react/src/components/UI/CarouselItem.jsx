@@ -1,7 +1,13 @@
 import styled from "styled-components";
+import yeji from "../../assets/images/yeji.png";
 
-function CarouselItem({ id }) {
-  return <Block>{id}</Block>;
+function CarouselItem({ slide }) {
+  const { id, url } = slide;
+  return (
+    <Block>
+      <img src={yeji} alt="예지 사진" />
+    </Block>
+  );
 }
 
 const Block = styled.li`
