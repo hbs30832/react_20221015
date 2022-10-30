@@ -6,6 +6,7 @@ import Movie from "./components/pages/Movie";
 import TV from "./components/pages/TV";
 import styled from "styled-components";
 import Home from "./components/pages/Home";
+import Post from "./components/practice/api/Post";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -29,6 +30,7 @@ function App() {
           <Route path="movie" element={<Movie />} />
           <Route path="tv" element={<TV />} />
         </Routes>
+        <Post />
       </MainBlock>
     </div>
   );
