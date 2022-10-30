@@ -4,9 +4,17 @@ import useAsync from "./useAsync";
 
 function Post() {
   const [title, setTitle] = useState("");
-  const [state, fetchData] = useAsync(async () => {
-    return axios.get("http://localhost:8000/posts");
-  });
+  const [state, fetchData] = useAsync(async () =>
+    axios.get("v1/search/book.json", {
+      params: {
+        query: "javascript",
+      },
+      headers: {
+        "X-Naver-Client-Id": "G0dP7iaR9t1olMt1uyB5",
+        "X-Naver-Client-Secret": "PkaWVU9gdP",
+      },
+    })
+  );
 
   const onSubmit = async () => {
     let result = await axios.post("http://localhost:8000/posts", {
