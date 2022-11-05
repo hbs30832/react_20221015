@@ -34,7 +34,7 @@ function MovieNav() {
 }
 
 const NavBlock = styled.nav`
-  margin-left: 40px;
+  margin: 0 40px;
   ul {
     display: flex;
   }

@@ -6,7 +6,9 @@ import Movie from "./components/pages/Movie";
 import TV from "./components/pages/TV";
 import styled from "styled-components";
 import Home from "./components/pages/Home";
-import Post from "./components/practice/api/Post";
+// import Post from "./components/practice/api/Post";
+import Login from "./components/practice/api/Login";
+import SignUp from "./components/practice/api/SignUp";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -23,21 +25,22 @@ function App() {
     <div>
       <Reset />
       <GlobalStyle />
-      <MovieHeader />
+      {/* <MovieHeader /> */}
       <MainBlock>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="movie" element={<Movie />} />
           <Route path="tv" element={<TV />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signUp" element={<SignUp />} />
         </Routes>
-        <Post />
       </MainBlock>
     </div>
   );
 }
 
 const MainBlock = styled.main`
-  padding: 50px 100px;
+  /* padding: 50px 100px; */s
 `;
 
 export default App;

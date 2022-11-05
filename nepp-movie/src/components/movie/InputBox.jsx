@@ -1,28 +1,38 @@
 import styled from "styled-components";
-import { BiSearch } from "react-icons/bi";
 
-function SearchBar() {
+function InputBox({ type, children, placeholder, onChange, name }) {
   return (
     <BarBlock>
-      <SearchInput type="text" />
-      <BiSearch />
+      <SearchInput
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        name={name}
+      />
+      {children}
     </BarBlock>
   );
 }
+
+InputBox.defaultProps = {
+  type: "text",
+};
 
 const BarBlock = styled.div`
   display: flex;
   align-items: center;
 
+  width: 100%;
   max-width: 300px;
   min-width: 140px;
 
-  flex: 1;
-
   padding: 5px;
-  margin-left: 50px;
   border: 1px solid black;
   border-radius: 4px;
+
+  & + & {
+    margin-top: 10px;
+  }
 `;
 
 const SearchInput = styled.input`
@@ -31,4 +41,4 @@ const SearchInput = styled.input`
   outline: none;
 `;
 
-export default SearchBar;
+export default InputBox;
