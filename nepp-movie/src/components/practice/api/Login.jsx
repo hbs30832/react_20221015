@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import InputBox from "../../movie/InputBox";
 import Button from "../../common/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormBox from "./FormBox";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BiHeart } from "react-icons/bi";
+
+import { useCookies } from "react-cookie";
 
 function Login() {
   const navigate = useNavigate();
@@ -12,6 +15,16 @@ function Login() {
     email: "",
     password: "",
   });
+
+  const [cookies, setCookie, removeCookie] = useCookies(["access-token"]);
+
+  // 토큰 가지고 있는지 확인
+  useEffect(() => {
+    console.log(cookies["access-token"]);
+    if (cookies["access-token"]) {
+      navigate("/post");
+    }
+  }, [cookies, navigate]);
 
   const { email, password } = inputs;
 
@@ -31,7 +44,11 @@ function Login() {
         email,
         password,
       });
-      console.log(result);
+      setCookie("access-token", result.data.data.token, {
+        path: "/",
+        maxAge: 60 * 60 * 24 * 7,
+      });
+      navigate("/post");
     } catch (e) {
       console.log(e);
     }
