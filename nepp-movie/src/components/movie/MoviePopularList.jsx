@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import { getPopularMovieList } from "../../utils/movie_api";
+import MovieDetail from "./MovieDetail";
 import MoviePopularItem from "./MoviePopularItem";
 import Title from "./Title";
 

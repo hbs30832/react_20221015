@@ -10,6 +10,31 @@ export const movie_instance = axios.create({
 });
 
 export async function getPopularMovieList() {
-  let result = await movie_instance.get("movie/popular");
+  let result = await movie_instance.get("movie/popular?language=ko-KR");
   return result;
+}
+
+export async function getMovieDetail(id) {
+  try {
+    return await movie_instance.get(`movie/${id}`, {
+      params: {
+        language: "ko-KR",
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function getSearch(query) {
+  try {
+    return await movie_instance.get("/search/multi", {
+      params: {
+        query,
+        language: "ko-KR",
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
 }

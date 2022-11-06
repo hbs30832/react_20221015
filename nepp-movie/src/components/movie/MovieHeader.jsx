@@ -2,15 +2,17 @@ import styled from "styled-components";
 import MovieNav from "./MovieNav";
 import InputBox from "./InputBox";
 import { BiSearch } from "react-icons/bi";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getSearch } from "../../utils/movie_api";
+import SearchBox from "./SearchBox";
 
 function MovieHeader() {
   return (
     <HeaderBlock>
       <Logo>Nepp Movie</Logo>
       <MovieNav />
-      <InputBox>
-        <BiSearch />
-      </InputBox>
+      <SearchBox />
     </HeaderBlock>
   );
 }
