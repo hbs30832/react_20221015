@@ -28,7 +28,7 @@ function App() {
     <div>
       <Reset />
       <GlobalStyle />
-      {/* <MovieHeader /> */}
+      <MovieHeader />
       <MainBlock>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -39,15 +39,15 @@ function App() {
           <Route path="post" element={<Post />} />
         </Routes>
       </MainBlock>
-      <LogoutBtn>
+      {/* <LogoutBtn>
         <Button text="Loguot" onClick={() => removeCookie("access-token")} />
-      </LogoutBtn>
+      </LogoutBtn> */}
     </div>
   );
 }
 
 const MainBlock = styled.main`
-  /* padding: 50px 100px; */
+  padding: 50px 100px;
 `;
 
 const LogoutBtn = styled.div`
