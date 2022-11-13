@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../state/reudcers/todos";
+import { addTodo } from "../state/modules/todos";
 
 function TodoCreate() {
   const [input, setInput] = useState("");

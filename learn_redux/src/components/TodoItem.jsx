@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { removeTodo, toggleTodo } from "../state/reudcers/todos";
+import { removeTodo, toggleTodo } from "../state/modules/todos";
 
 function TodoItem({ todo }) {
   const dispatch = useDispatch();

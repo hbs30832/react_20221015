@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import counter from "./reudcers/counter";
-import todos from "./reudcers/todos";
+import counter from "./modules/counter";
+import todos from "./modules/todos";
 
 const rootReducer = combineReducers({
   counter,
