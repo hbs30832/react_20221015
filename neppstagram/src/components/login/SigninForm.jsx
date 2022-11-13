@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { postSignUp } from "../../api";
 import { RedButton } from "../common/buttons";
 import { Form } from "../common/form";
 import { Input } from "../common/input";
@@ -12,8 +15,12 @@ function SigninForm() {
     confirmPassword: "",
   });
 
+  // 비구조화 할당
+  const { username, password, email, confirmPassword } = inputs;
+
   const [isEmpty, setIsEmpty] = useState(true);
-  const disabled = isEmpty || inputs.password !== inputs.confirmPassword;
+  const disabled = isEmpty || password !== confirmPassword;
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -35,10 +42,19 @@ function SigninForm() {
     setIsEmpty(false);
   }, [inputs, isEmpty]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    postSignUp(username, email, password).then(() => {
+      alert("회원가입에 성공하였습니다.");
+      navigate("/accounts/login");
+    });
+  };
+
   return (
     <>
       <Title title="Signin" />
-      <Form margin="20px 0">
+      <Form margin="20px 0" onSubmit={handleSubmit}>
         <Input
           placeholder="이름을 입력해주세요"
           name="username"
@@ -51,11 +67,13 @@ function SigninForm() {
         />
         <Input
           placeholder="비밀번호를 입력하세요"
+          type="password"
           name="password"
           onChange={handleInput}
         />
         <Input
           placeholder="비밀번호를 확인해주세요"
+          type="password"
           name="confirmPassword"
           onChange={handleInput}
         />

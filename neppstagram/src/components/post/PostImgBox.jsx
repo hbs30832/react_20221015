@@ -2,12 +2,8 @@ import styled from "styled-components";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
 import { useState } from "react";
 
-function PostImgBox() {
-  const imgUrls = [
-    "https://w.namu.la/s/c2ccec729ca7140681f80154b2271ef78bb0ba2c192390ae3dd39e06cfd7b2e3d891e950eeb63f0aef4e25461528cf1db7be8df22c3cf1680de0bd50b6c27c9728944c2d6ef231a763d0c4da09e693269e89c9ff50560f5fa677b54a19f2fc87",
-    "https://m.citybreeze.co.kr/file_data/ctbreeze/2022/04/19/ac007ff0b38eec2ee299876fbc2cbca8.jpg",
-    "https://w.namu.la/s/c2ccec729ca7140681f80154b2271ef78bb0ba2c192390ae3dd39e06cfd7b2e3d891e950eeb63f0aef4e25461528cf1db7be8df22c3cf1680de0bd50b6c27c9728944c2d6ef231a763d0c4da09e693269e89c9ff50560f5fa677b54a19f2fc87",
-  ];
+function PostImgBox({ imgUrls }) {
+  console.log(imgUrls);
 
   const [idx, setIdx] = useState(0);
 
@@ -50,9 +46,12 @@ const ImgList = styled.ul`
   transition: transform 0.25s;
   transform: translate(${({ idx }) => idx * -200}px);
   li {
+    display: flex;
+    justify-content: center;
     width: 200px;
+    flex-shrink: 0;
     img {
-      height: 200%;
+      width: 100%;
     }
   }
 `;
