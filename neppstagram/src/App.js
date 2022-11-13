@@ -44,9 +44,10 @@ const Block = styled.div`
 `;
 
 const InnerBlock = styled.div`
-  width: 300px;
+  width: 200px;
   height: 500px;
   border: 1px solid #bbb;
+  overflow-y: scroll;
 `;
 
 export default App;
